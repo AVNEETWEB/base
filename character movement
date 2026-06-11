@@ -9,7 +9,7 @@ body {
   position: relative;  
   background: #87ceeb;   
 }  
- 
+  
 .character {
   width: 120px; 
   position: absolute; 

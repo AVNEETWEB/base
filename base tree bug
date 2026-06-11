@@ -9,7 +9,7 @@ body {
     overflow: hidden;
     background: skyblue;
 }
-
+ 
 canvas {
     display: block;
 }

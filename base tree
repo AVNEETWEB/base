@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Base Fruit Forest</title>
+<style>
+body {
+    margin: 0;
+    overflow: hidden;
+    background: skyblue;
+}
+
+canvas {
+    display: block;
+}
+</style>
+</head>
+<body>
+
+<canvas id="game"></canvas>
+
+<script>
+const canvas = document.getElementById("game");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let trees = [];
+
+for (let i = 0; i < 60; i++) {
+    trees.push({
+        x: i * 180,
+        y: 220 + Math.random() * 100
+    });
+}
+
+function drawTree(tree) {
+
+    // trunk
+    ctx.fillStyle = "#6B4423";
+    ctx.fillRect(tree.x - 12, tree.y, 24, 80);
+
+    // leaves
+    ctx.fillStyle = "#228B22";
+    ctx.beginPath();
+    ctx.arc(tree.x, tree.y, 60, 0, Math.PI * 2);
+    ctx.fill();
+
+    // lots of Base-style fruits
+    for (let i = 0; i < 20; i++) {
+
+        let fx = tree.x + Math.random() * 90 - 45;
+        let fy = tree.y + Math.random() * 70 - 35;
+
+        // blue fruit
+        ctx.fillStyle = "#0052FF";
+        ctx.beginPath();
+        ctx.arc(fx, fy, 10, 0, Math.PI * 2);
+        ctx.fill();
+
+        // white line (Base-like look)
+        ctx.fillStyle = "white";
+        ctx.fillRect(fx - 5, fy - 1.5, 10, 3);
+    }
+}
+
+function drawRoad() {
+
+    ctx.fillStyle = "#444";
+    ctx.fillRect(0, canvas.height - 140, canvas.width, 140);
+
+    ctx.strokeStyle = "white";
+    ctx.lineWidth = 6;
+
+    for (let i = 0; i < canvas.width; i += 80) {
+        ctx.beginPath();
+        ctx.moveTo(i, canvas.height - 70);
+        ctx.lineTo(i + 40, canvas.height - 70);
+        ctx.stroke();
+    }
+}
+
+function animate() {
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // grass
+    ctx.fillStyle = "#4CAF50";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    drawRoad();
+
+    trees.forEach(tree => {
+
+        drawTree(tree);
+
+        tree.x -= 2;
+
+        if (tree.x < -120) {
+            tree.x = canvas.width + Math.random() * 300;
+        }
+    });
+
+    requestAnimationFrame(animate);
+}
+
+animate();
+</script>
+
+</body>
+</html>

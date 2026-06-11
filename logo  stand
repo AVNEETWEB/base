@@ -8,7 +8,7 @@ body {
   overflow: hidden;   
   position: relative;   
 }  
- 
+  
 .character {
   width: 120px;
   position: absolute; 

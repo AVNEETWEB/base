@@ -16,7 +16,7 @@
 }
 
 .head {
-  width: 80px;
+  width: 80px; 
   height: 80px;
   background: #ffd39b; 
   border-radius: 50%;

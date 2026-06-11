@@ -6,7 +6,7 @@
   height: 100vh;  
   overflow: hidden;    
   position: relative;   
-}  
+}   
   
 .character {   
   width: 120px; 

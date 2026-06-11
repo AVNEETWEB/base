@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {
+  margin: 0;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+  background: #87ceeb;
+}
+
+.character {
+  width: 120px;
+  position: absolute;
+  left: 100px;
+  top: 250px;
+  animation: move 8s linear infinite alternate;
+}
+
+.head {
+  width: 80px;
+  height: 80px;
+  background: #ffd39b;
+  border-radius: 50%;
+  margin: auto;
+}
+
+.body {
+  width: 100px;
+  height: 120px;
+  background: #2563eb;
+  margin: auto;
+  border-radius: 10px;
+  position: relative;
+}
+
+.leg {
+  width: 12px;
+  height: 60px;
+  background: #222;
+  position: absolute;
+  bottom: -55px;
+  transform-origin: top center;
+}
+
+.left-leg {
+  left: 25px;
+  animation: walk-left 0.5s infinite alternate;
+}
+
+.right-leg {
+  right: 25px;
+  animation: walk-right 0.5s infinite alternate;
+}
+
+@keyframes walk-left {
+  from { transform: rotate(-25deg); }
+  to   { transform: rotate(25deg); }
+}
+
+@keyframes walk-right {
+  from { transform: rotate(25deg); }
+  to   { transform: rotate(-25deg); }
+}
+
+@keyframes move {
+  from { left: 50px; }
+  to   { left: calc(100vw - 170px); }
+}
+</style>
+</head>
+<body>
+
+<div class="character">
+  <div class="head"></div>
+
+  <div class="body">
+    <div class="leg left-leg"></div>
+    <div class="leg right-leg"></div>
+  </div>
+</div>
+
+</body>
+</html>

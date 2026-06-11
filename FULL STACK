@@ -19,7 +19,7 @@ body{
 .stage-glow{position:absolute;left:50%;bottom:80px;transform:translateX(-50%);width:700px;height:200px;background:radial-gradient(circle,rgba(168,85,247,.7),transparent);filter:blur(50px);}
 @keyframes float{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(-10px)}}
 </style>
-</head>
+</head> 
 <body>
 <div class="stage-glow"></div>
 <div class="coming-banner">🚀 BASE COMING SOON 🚀</div>

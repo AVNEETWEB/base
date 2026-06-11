@@ -8,7 +8,7 @@ body{
     margin:0;overflow:hidden;height:100vh;
     background:linear-gradient(to bottom,#0f172a,#1e3a8a,#7c3aed,#f97316);
 }
-.coming-banner{
+.coming-banner{ 
     position:absolute;left:50%;bottom:140px;transform:translateX(-50%);
     width:420px;height:100px;background:linear-gradient(135deg,#2563eb,#7c3aed,#ec4899);
     border-radius:20px;display:flex;align-items:center;justify-content:center;

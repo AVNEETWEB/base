@@ -1,2 +1,141 @@
-README.md.
-base.org
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Base Runner</title>
+<style>
+body {
+    margin: 0;
+    overflow: hidden;
+    background: #111;
+}
+
+canvas {
+    display: block;
+    margin: auto;
+    background: #222;
+}
+</style>
+</head>
+<body>
+
+<canvas id="game" width="800" height="400"></canvas>
+
+<script>
+const canvas = document.getElementById("game");
+const ctx = canvas.getContext("2d");
+
+const player = {
+    x: 100,
+    y: 300,
+    w: 40,
+    h: 40,
+    vy: 0,
+    jumping: false
+};
+
+let obstacles = [];
+let score = 0;
+
+document.addEventListener("keydown", e => {
+    if (e.code === "Space" && !player.jumping) {
+        player.vy = -12;
+        player.jumping = true;
+    }
+});
+
+function spawnObstacle() {
+    obstacles.push({
+        x: canvas.width,
+        y: 320,
+        r: 25
+    });
+}
+
+setInterval(spawnObstacle, 1500);
+
+function update() {
+    player.vy += 0.6;
+    player.y += player.vy;
+
+    if (player.y > 300) {
+        player.y = 300;
+        player.vy = 0;
+        player.jumping = false;
+    }
+
+    obstacles.forEach(o => o.x -= 6);
+
+    obstacles = obstacles.filter(o => o.x > -50);
+
+    obstacles.forEach(o => {
+        if (
+            player.x < o.x + o.r &&
+            player.x + player.w > o.x - o.r &&
+            player.y < o.y + o.r &&
+            player.y + player.h > o.y - o.r
+        ) {
+            alert("Game Over! Score: " + score);
+            location.reload();
+        }
+    });
+
+    score++;
+}
+
+function drawRoad() {
+    ctx.fillStyle = "#444";
+    ctx.fillRect(0, 340, canvas.width, 60);
+
+    ctx.strokeStyle = "#fff";
+    ctx.lineWidth = 4;
+
+    for (let i = 0; i < canvas.width; i += 50) {
+        ctx.beginPath();
+        ctx.moveTo(i, 370);
+        ctx.lineTo(i + 25, 370);
+        ctx.stroke();
+    }
+}
+
+function drawPlayer() {
+    ctx.fillStyle = "lime";
+    ctx.fillRect(player.x, player.y, player.w, player.h);
+}
+
+function drawObstacles() {
+    obstacles.forEach(o => {
+        // Base-style blue logo obstacle
+        ctx.fillStyle = "#0052FF";
+        ctx.beginPath();
+        ctx.arc(o.x, o.y, o.r, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.fillStyle = "white";
+        ctx.fillRect(o.x - 10, o.y - 3, 20, 6);
+    });
+}
+
+function draw() {
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+
+    drawRoad();
+    drawPlayer();
+    drawObstacles();
+
+    ctx.fillStyle = "white";
+    ctx.font = "20px Arial";
+    ctx.fillText("Score: " + score, 20, 30);
+}
+
+function loop() {
+    update();
+    draw();
+    requestAnimationFrame(loop);
+}
+
+loop();
+</script>
+
+</body>
+</html>

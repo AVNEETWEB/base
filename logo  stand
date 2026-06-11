@@ -9,7 +9,7 @@
 }   
   
 .character {   
-  width: 120px; 
+  width: 120px;  
   position: absolute; 
   left: 100px;    
   top: 200px;

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {
+  margin: 0;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+.character {
+  width: 120px;
+  position: absolute;
+  left: 100px;
+  top: 200px;
+}
+
+.head {
+  width: 80px;
+  height: 80px;
+  background: #ffd39b;
+  border-radius: 50%;
+  margin: auto;
+}
+
+.body {
+  width: 100px;
+  height: 120px;
+  background: #2563eb;
+  margin: auto;
+  border-radius: 10px;
+}
+</style>
+</head>
+<body>
+
+<div class="character" id="player">
+  <div class="head"></div>
+  <div class="body"></div>
+</div>
+
+<script>
+const player = document.getElementById("player");
+
+let x = 100;
+let y = 200;
+const speed = 10;
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "ArrowRight") x += speed;
+  if (e.key === "ArrowLeft") x -= speed;
+  if (e.key === "ArrowUp") y -= speed;
+  if (e.key === "ArrowDown") y += speed;
+
+  player.style.left = x + "px";
+  player.style.top = y + "px";
+});
+</script>
+
+</body>
+</html>
